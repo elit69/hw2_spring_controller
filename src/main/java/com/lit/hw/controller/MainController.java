@@ -28,14 +28,14 @@ public class MainController {
 	public String addPage(ModelMap model){
 		model.addAttribute("page", "Add");
 		System.out.println("add page");
-		return "add";
+		return "_form";
 	}
 	@RequestMapping(value = "/update/{id}" ,  method = RequestMethod.GET)
 	public String updatePage(ModelMap model, @PathVariable int id){
 		model.addAttribute("page", "Update");
 		model.addAttribute("usrObj", userService.show(id));
 		System.out.println("update page");
-		return "add";
+		return "_form";
 	}
 	@RequestMapping(value = "/show/{id}" ,  method = RequestMethod.GET)
 	public String showPage(ModelMap model, @PathVariable int id){
@@ -43,7 +43,7 @@ public class MainController {
 		model.addAttribute("readonly", "readonly");
 		model.addAttribute("usrObj", userService.show(id));
 		System.out.println("show page");
-		return "add";
+		return "_form";
 	}
 	
 	/////////////////////////////////////////////////////////////action	
