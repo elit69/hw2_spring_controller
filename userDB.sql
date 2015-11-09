@@ -18,7 +18,7 @@ Date: 2015-11-05 14:07:13
 -- ----------------------------
 -- Sequence structure for tbuser_id_seq
 -- ----------------------------
-DROP SEQUENCE "tbuser_id_seq";
+DROP SEQUENCE IF EXISTS "tbuser_id_seq" CASCADE;
 CREATE SEQUENCE "tbuser_id_seq"
  INCREMENT 1
  MINVALUE 1

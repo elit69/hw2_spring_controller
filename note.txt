@@ -1,3 +1,11 @@
 tolapheng99@gmail.com
-isELIgnored="false"
+########################
+if web.xml<=2.3
+	use isELIgnored="false" in jsp file	
+#########################
+sublimetext2/zenburn
 http://eclipsecolorthemes.org/?view=theme&id=66
+#########################
+user: 		postgres
+password:	1234
+database: 	userDB
