@@ -9,3 +9,6 @@ http://eclipsecolorthemes.org/?view=theme&id=66
 user: 		postgres
 password:	1234
 database: 	userDB
+#########################in EL
+empty is an operator.
+<c:if test="${empty listUser}">

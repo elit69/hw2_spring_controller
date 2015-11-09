@@ -52,14 +52,14 @@
 						</div>
 						<div class="col-sm-2 ">
 							<select class="form-control" name="type">
-								<option value="first_name">First Name</option>
-								<option value="last_name">Last Name</option>
-								<option value="classroom">Classroom</option>
+								<option value="username">Username</option>
+								<option value="email">Email</option>
+								<option value="password">Password</option>
+								<option value="image">Image</option>
 							</select>
 						</div>
 					</div>
 				</mvc:form>
-
 				<div class="table-responsive">
 					<table class="table table-striped table-hover">
 						<thead>
@@ -99,6 +99,12 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					<c:if test="${empty listUser}">									
+						<div class="alert alert-danger text-center">
+							<strong>404 NOT FOUND</strong>
+							<a href="${pageContext.request.contextPath}/">Go Home</a>
+						</div>
+					</c:if>
 				</div>
 
 			</div>
