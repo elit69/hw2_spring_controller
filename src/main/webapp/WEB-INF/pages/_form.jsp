@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="mvc"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -35,34 +35,37 @@
 						class="fa fa-home fa-2x"></i></a>
 				</h1>
 				<hr>
-				<mvc:form action="${pageContext.request.contextPath}/${fn:toLowerCase(page) }"
+				<mvc:form
+					action="${pageContext.request.contextPath}/${fn:toLowerCase(page) }"
 					method="POST">
 					<div class="col-sm-12 ">
 						<div class="col-sm-8 center-block" style="margin-bottom: 40px;">
-							<input type="hidden" class="form-control" maxlength="100"
-										name="id" value="${usrObj.id}">
+							<c:if test='${page == "Update"}'>
+								<input type="hidden" class="form-control" maxlength="100"
+									name="id" value="${usrObj.id}">
+							</c:if>
 							<div class="form-group">
 								<label class="col-sm-3">Username:</label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="username"
-										placeholder="Enter Username" maxlength="100"
-										value='${usrObj.username}' ${readonly }>
+										placeholder="Enter Username" maxlength="20"
+										value='${usrObj.username}' ${readonly } required autofocus>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3">Email:</label>
 								<div class="col-sm-9">
 									<input type="email" class="form-control" name="email"
-										placeholder="Enter Email" maxlength="100"
-										value='${usrObj.email}' ${readonly }>
+										placeholder="Enter name@domain.com" maxlength="25" pattern='[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$'
+										value='${usrObj.email}' ${readonly } required>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3">Password: </label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="password"
-										placeholder="Enter Password" maxlength="100"
-										value='${usrObj.password}' ${readonly }>
+										placeholder="Enter Password" maxlength="20"
+										value='${usrObj.password}' ${readonly } required>
 								</div>
 							</div>
 							<div class="form-group">
@@ -70,7 +73,7 @@
 								<div class="col-sm-9">
 									<input type="date" class="form-control" name="birthdate"
 										placeholder="Enter Birth Date" value='${usrObj.birthdate}'
-										${readonly }>
+										${readonly } required>
 								</div>
 							</div>
 							<div class="form-group">
@@ -78,25 +81,49 @@
 								<div class="col-sm-9">
 									<input type="date" class="form-control" name="registerdate"
 										placeholder="Enter Register Date"
-										value='${usrObj.registerdate}' ${readonly }>
+										value='${usrObj.registerdate}' ${readonly } required>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3">Image: </label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="image"
-										placeholder="Enter Image" value='${usrObj.image}' ${readonly }>
+										placeholder="Enter Image" value='${usrObj.image}' ${readonly } required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3">Role: </label>
+								<div class="col-sm-9">
+									<select class="form-control" name="role" ${readonly } required>
+										<option value="">-Select Role-</option>
+										<option value="ROLE_ADMIN" ${usrObj.role=='ROLE_ADMIN'?'selected':''}>Admin</option>
+										<option value="ROLE_AUTHOR" ${usrObj.role=='ROLE_AUTHOR'?'selected':''}>Author</option>
+										<option value="ROLE_USER" ${usrObj.role=='ROLE_USER'?'selected':''}>User</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3">Enable: </label>
+								<div class="col-sm-9">
+									<label class="radio-inline"> 
+										<input type="radio" name="enable" value="true" ${usrObj.enable?'checked':''} ${disabled }>True
+									</label> 
+									<label class="radio-inline"> 
+										<input type="radio" name="enable" value="false" ${usrObj.enable?'':'checked'} ${disabled }>False
+									</label>
 								</div>
 							</div>
 						</div>
 						<div class="col-sm-6 center-block">
 							<c:choose>
 								<c:when test='${page == "Show"}'>
-									<a href="${pageContext.request.contextPath}/update/${usrObj.id}"
-										class="btn btn-primary" style="width: 200px;">
-										<i class="fa fa-pencil"></i>&nbsp;&nbsp;Update
+									<a
+										href="${pageContext.request.contextPath}/update/${usrObj.id}"
+										class="btn btn-primary" style="width: 200px;"> <i
+										class="fa fa-pencil"></i>&nbsp;&nbsp;Update
 									</a>
-									<a href="${pageContext.request.contextPath}/delete/${usrObj.id}"
+									<a
+										href="${pageContext.request.contextPath}/delete/${usrObj.id}"
 										class="btn btn-primary pull-right" style="width: 200px;">
 										<i class="fa fa-trash"></i>&nbsp;&nbsp;Delete
 									</a>

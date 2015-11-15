@@ -12,3 +12,11 @@ database: 	userDB
 #########################in EL
 empty is an operator.
 <c:if test="${empty listUser}">
+#########################set checked radio button
+${usrObj.enable?'checked':''}
+#########################cannot add because of this line
+<input type="hidden" class="form-control" maxlength="100" name="id" value="${usrObj.id}">
+#########################set selected default value
+${usrObj.role=='ROLE_USER'?'selected':''}
+#########################email reg exp with Captial letter
+[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$

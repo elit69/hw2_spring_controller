@@ -10,6 +10,24 @@ public class User {
 	private Date birthdate;
 	private Date registerdate;
 	private String image;
+	private String role;
+	private boolean enable;
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public boolean isEnable() {
+		return enable;
+	}
+
+	public void setEnable(boolean enable) {
+		this.enable = enable;
+	}
 
 	public String getPassword() {
 		return password;

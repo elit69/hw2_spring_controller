@@ -67,8 +67,8 @@
 								<th>ID</th>
 								<th>Username</th>
 								<th>Email</th>
-								<th>Password</th>
-								<th>Birth Date</th>
+								<th>Role</th>
+								<th>Enable</th>
 								<th>Register Date</th>
 								<th>Image</th>
 								<th>Action</th>
@@ -80,11 +80,10 @@
 									<td>${usr.id}</td>
 									<td>${usr.username}</td>
 									<td>${usr.email}</td>
-									<td>${usr.password}</td>
-									<td>${usr.birthdate}</td>
+									<td>${usr.role}</td>
+									<td>${usr.enable}</td>
 									<td>${usr.registerdate}</td>
 									<td>${usr.image}</td>
-
 									<td><a class="label label-info"
 										href="${pageContext.request.contextPath}/show/${usr.id}"
 										style="margin-right: 10px;"><i class="fa fa-eye fa-lg"></i>

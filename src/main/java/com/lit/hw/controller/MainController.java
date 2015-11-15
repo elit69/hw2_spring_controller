@@ -45,6 +45,7 @@ public class MainController {
 	public String showPage(ModelMap model, @PathVariable int id) {
 		model.addAttribute("page", "Show");
 		model.addAttribute("readonly", "readonly");
+		model.addAttribute("disabled", "disabled");
 		model.addAttribute("usrObj", userService.show(id));
 		System.out.println("show page");
 		return "_form";

@@ -34,6 +34,8 @@ public class UserServiceImpl implements UserService{
 				s.setBirthdate(rs.getDate("birthdate"));
 				s.setRegisterdate(rs.getDate("registerdate"));
 				s.setImage(rs.getString("image"));
+				s.setRole(rs.getString("role"));
+				s.setEnable(rs.getBoolean("enable"));
 				listUser.add(s);
 			}
 			return listUser;
@@ -44,8 +46,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public boolean add(User usr) {
-		String sql = "INSERT INTO tbuser(username,password,email,birthdate,registerdate,image) "
-				+ "VALUES (?,?,?,?,?,?);";
+		String sql = "INSERT INTO tbuser(username,password,email,birthdate,registerdate,image,role,enable) "
+				+ "VALUES (?,?,?,?,?,?,?,?);";
 		try (Connection cnn = dataSource.getConnection();) {
 			PreparedStatement ps = cnn.prepareStatement(sql);
 			ps.setString(1, usr.getUsername());
@@ -54,6 +56,8 @@ public class UserServiceImpl implements UserService{
 			ps.setDate(4, usr.getBirthdate());
 			ps.setDate(5, usr.getRegisterdate());
 			ps.setString(6, usr.getImage());
+			ps.setString(7, usr.getRole());
+			ps.setBoolean(8, usr.isEnable());
 			System.out.println(ps.toString());
 			if (ps.executeUpdate() > 0)
 				return true;
@@ -64,10 +68,11 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public boolean update(User usr) {
-		String sql = "update tbuser set " 	+ "username = ?, "
-						+ "password = ?, " 	+ "email= ?, "
-						+ "birthdate = ?, " + "registerdate= ?, "
-						+ "image= ? " 		+ "where id = ?";
+		String sql = "update tbuser set " 		+ "username = ?, "
+						+ "password = ?, " 		+ "email= ?, "
+						+ "birthdate = ?, " 	+ "registerdate= ?, "
+						+ "image= ?, " 			+ "role = ?, " 
+						+ "enable= ? "			+ "where id = ?";
 		try (Connection cnn = dataSource.getConnection();) {
 			PreparedStatement ps = cnn.prepareStatement(sql);
 			ps.setString(1, usr.getUsername());
@@ -76,7 +81,9 @@ public class UserServiceImpl implements UserService{
 			ps.setDate(4, usr.getBirthdate());
 			ps.setDate(5, usr.getRegisterdate());
 			ps.setString(6, usr.getImage());
-			ps.setInt(7, usr.getId());
+			ps.setString(7, usr.getRole());
+			ps.setBoolean(8, usr.isEnable());
+			ps.setInt(9, usr.getId());
 			System.out.println(ps.toString());
 			if (ps.executeUpdate() > 0)
 				return true;
@@ -116,6 +123,8 @@ public class UserServiceImpl implements UserService{
 				s.setBirthdate(rs.getDate("birthdate"));
 				s.setRegisterdate(rs.getDate("registerdate"));
 				s.setImage(rs.getString("image"));
+				s.setRole(rs.getString("role"));
+				s.setEnable(rs.getBoolean("enable"));
 				return s;
 			}
 		} catch (Exception e) {
@@ -142,6 +151,8 @@ public class UserServiceImpl implements UserService{
 				s.setBirthdate(rs.getDate("birthdate"));
 				s.setRegisterdate(rs.getDate("registerdate"));
 				s.setImage(rs.getString("image"));
+				s.setRole(rs.getString("role"));
+				s.setEnable(rs.getBoolean("enable"));
 				listUser.add(s);
 			}
 			return listUser;
