@@ -31,6 +31,8 @@
 			<div class="col-sm-12 card form-horizontal">
 				<h1>
 					${page} a Student <a class="btn pull-right"
+						href="${pageContext.request.contextPath}/logout"><i
+						class="fa fa-sign-out fa-2x"></i></a> <a class="btn pull-right"
 						href="${pageContext.request.contextPath}/"><i
 						class="fa fa-home fa-2x"></i></a>
 				</h1>
@@ -53,19 +55,46 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3">Email:</label>
-								<div class="col-sm-9">
-									<input type="email" class="form-control" name="email"
-										placeholder="Enter name@domain.com" maxlength="25" pattern='[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$'
-										value='${usrObj.email}' ${readonly } required>
-								</div>
-							</div>
-							<div class="form-group">
 								<label class="col-sm-3">Password: </label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="password"
 										placeholder="Enter Password" maxlength="20"
 										value='${usrObj.password}' ${readonly } required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3">Email:</label>
+								<div class="col-sm-9">
+									<input type="email" class="form-control" name="email"
+										placeholder="Enter name@domain.com" maxlength="25"
+										pattern='[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$'
+										value='${usrObj.email}' ${readonly } required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3">Role: </label>
+								<div class="col-sm-9">
+									<select class="form-control" name="role" ${readonly } required>
+										<option value="">-Select Role-</option>
+										<option value="ROLE_ADMIN"
+											${usrObj.role=='ROLE_ADMIN'?'selected':''}>Admin</option>
+										<option value="ROLE_AUTHOR"
+											${usrObj.role=='ROLE_AUTHOR'?'selected':''}>Author</option>
+										<option value="ROLE_USER"
+											${usrObj.role=='ROLE_USER'?'selected':''}>User</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3">Enable: </label>
+								<div class="col-sm-9">
+									<label class="radio-inline"> <input type="radio"
+										name="enable" value="true" ${usrObj.enable?'checked':''}
+										${disabled }>True
+									</label> <label class="radio-inline"> <input type="radio"
+										name="enable" value="false" ${usrObj.enable?'':'checked'}
+										${disabled }>False
+									</label>
 								</div>
 							</div>
 							<div class="form-group">
@@ -88,29 +117,8 @@
 								<label class="col-sm-3">Image: </label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="image"
-										placeholder="Enter Image" value='${usrObj.image}' ${readonly } required>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3">Role: </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="role" ${readonly } required>
-										<option value="">-Select Role-</option>
-										<option value="ROLE_ADMIN" ${usrObj.role=='ROLE_ADMIN'?'selected':''}>Admin</option>
-										<option value="ROLE_AUTHOR" ${usrObj.role=='ROLE_AUTHOR'?'selected':''}>Author</option>
-										<option value="ROLE_USER" ${usrObj.role=='ROLE_USER'?'selected':''}>User</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3">Enable: </label>
-								<div class="col-sm-9">
-									<label class="radio-inline"> 
-										<input type="radio" name="enable" value="true" ${usrObj.enable?'checked':''} ${disabled }>True
-									</label> 
-									<label class="radio-inline"> 
-										<input type="radio" name="enable" value="false" ${usrObj.enable?'':'checked'} ${disabled }>False
-									</label>
+										placeholder="Enter Image" value='${usrObj.image}' ${readonly }
+										required>
 								</div>
 							</div>
 						</div>
@@ -135,7 +143,7 @@
 									</button>
 									<button type="reset" id="btnClear"
 										class="btn btn-primary pull-right" style="width: 200px;">
-										<i class="fa fa-times-circle"></i>&nbsp;&nbsp;Reset
+										<i class="fa fa-eraser"></i>&nbsp;&nbsp;Reset
 									</button>
 								</c:otherwise>
 							</c:choose>

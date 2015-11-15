@@ -19,6 +19,7 @@ public class MainController {
 	UserService userService;
 
 	///////////////////////////////////////////////////////////// page
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String homePage(ModelMap model) {
 		model.addAttribute("listUser", userService.list());

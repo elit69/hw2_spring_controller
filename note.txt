@@ -20,3 +20,31 @@ ${usrObj.enable?'checked':''}
 ${usrObj.role=='ROLE_USER'?'selected':''}
 #########################email reg exp with Captial letter
 [A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$
+#########################error pom file
+forget to copy 
+	<properties>
+		<springframework.version>4.2.2.RELEASE</springframework.version>
+	</properties>
+#########################multiple rows
+hasAnyRole("ADMIN", "AUTHOR")
+#########################If you need to check if it is an anonymousUser
+######then you can check whether Authentication object is AnonymousAuthenticationToken instance or not.
+	spring 4 only
+Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+if(auth instanceof AnonymousAuthenticationToken){ System.out.println("anoasf");}
+#########################redirect loop
+http://stackoverflow.com/questions/22767205/spring-security-exclude-url-patterns-in-security-annotation-configurartion
+	.antMatchers("/**").hasAnyRole("ADMIN", "AUTHOR");
+	.antMatchers("/login").permitAll()//hasRole("ANONYMOUS");
+	.antMatchers("/resources/**").permitAll()			
+->
+	.antMatchers("/login").permitAll()//hasRole("ANONYMOUS");
+	.antMatchers("/resources/**").permitAll()
+	.antMatchers("/**").hasAnyRole("ADMIN", "AUTHOR");
+#############################################to do list
+-do not delete user urself
+-pagination
+-limit rows
+-limit role_author to view and add only
+-show username
+-quiery current user profile

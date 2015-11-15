@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -17,6 +18,7 @@ import com.lit.hw.services.impl.UserServiceImpl;
 @Configuration
 @ComponentScan(basePackages="com.lit.hw")
 @EnableWebMvc
+@Import({ SpringSecurityConfiguration.class })
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	
