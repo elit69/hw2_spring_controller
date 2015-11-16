@@ -26,95 +26,20 @@
 <!-- End Custom StyleSheet -->
 </head>
 <body>
-${message }
 	<div id="main" class="container-fluid">
-		<div class="col-sm-12 center-block">
+		<div class="row col-sm-8 center-block">
 			<div class="col-sm-12 card form-horizontal">
-				<h1>All User 
-					<a class="btn pull-right"
+				<h1>
+					Welcome <a class="btn pull-right"
 						href="${pageContext.request.contextPath}/logout"><i
-						class="fa fa-sign-out fa-2x"></i></a> 
-					<a class="btn pull-right"
-						href="${pageContext.request.contextPath}/add"><i
-						class="fa fa-plus fa-2x"></i></a>
-					<a class="btn pull-right"
-						href="${pageContext.request.contextPath}/show/${currentUser.id }">Hi, ${currentUser.username }</a>
+						class="fa fa-sign-out fa-2x"></i></a>
 				</h1>
-				<hr>
-				<mvc:form action="${pageContext.request.contextPath}/search"
-					method="POST">
-					<div class="col-sm-11 center-block">
-						<div class="col-sm-10 ">
-							<div class="input-group">
-								<input type="text" class="form-control" name="keyword"
-									placeholder="Search for User ..." autofocus> <span
-									class="input-group-btn">
-									<button type="submit" class="btn btn-primary">
-										&nbsp;<span class="fa fa-search"></span>&nbsp;
-									</button>
-								</span>
-
-							</div>
-						</div>
-						<div class="col-sm-2 ">
-							<select class="form-control" name="type">
-								<option value="username">Username</option>
-								<option value="email">Email</option>
-								<option value="password">Password</option>
-								<option value="image">Image</option>
-							</select>
-						</div>
+				<hr />
+				<div class="col-sm-8 center-block" style="margin-bottom: 40px;">
+					<div class="alert alert-info text-center">
+						<a class="btn"
+						href="${pageContext.request.contextPath}/admin/">Admin Page</a>
 					</div>
-				</mvc:form>
-				<div class="table-responsive">
-					<table
-						class="table table-striped table-bordered table-condensed table-hover">
-						<thead>
-							<tr class="info">
-								<th>ID</th>
-								<th>Username</th>
-								<th>Password</th>
-								<th>Email</th>
-								<th>Role</th>
-								<th>Enable</th>
-								<th>Birth Date</th>
-								<th>Register Date</th>
-								<th>Image</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="usr" items="${listUser}">
-								<tr>
-									<td>${usr.id}</td>
-									<td>${usr.username}</td>
-									<td>${usr.password}</td>
-									<td>${usr.email}</td>
-									<td>${usr.role}</td>
-									<td>${usr.enable}</td>
-									<td>${usr.birthdate}</td>
-									<td>${usr.registerdate}</td>
-									<td>${usr.image}</td>
-									<td><a class="label label-info"
-										href="${pageContext.request.contextPath}/show/${usr.id}"
-										style="margin-right: 10px;"><i class="fa fa-eye fa-lg"></i>
-											Show </a> <a class="label label-primary"
-										href="${pageContext.request.contextPath}/update/${usr.id}"
-										style="margin-right: 10px;"><i class="fa fa-pencil fa-lg"></i>
-											Edit </a> <a class="label label-danger"
-										href="${pageContext.request.contextPath}/delete/${usr.id}"
-										style="margin-right: 10px;"><i class="fa fa-trash-o fa-lg"></i>
-											Delete</a></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<c:if test="${empty listUser}">
-						<div class="alert alert-danger text-center">
-							<strong>404 NOT FOUND</strong> <a
-								href="${pageContext.request.contextPath}/">Go Home</a>
-						</div>
-					</c:if>
 				</div>
 
 			</div>
