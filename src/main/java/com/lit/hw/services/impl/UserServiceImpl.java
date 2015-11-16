@@ -10,13 +10,12 @@ import javax.sql.DataSource;
 import com.lit.hw.entities.User;
 import com.lit.hw.services.UserService;
 
-public class UserServiceImpl implements UserService{	
+public class UserServiceImpl implements UserService {
 	private DataSource dataSource;
 
 	public UserServiceImpl(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
-
 
 	public ArrayList<User> list() {
 		String sql = "select * from tbuser order by id;";
@@ -68,11 +67,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public boolean update(User usr) {
-		String sql = "update tbuser set " 		+ "username = ?, "
-						+ "password = ?, " 		+ "email= ?, "
-						+ "birthdate = ?, " 	+ "registerdate= ?, "
-						+ "image= ?, " 			+ "role = ?, " 
-						+ "enable= ? "			+ "where id = ?";
+		String sql = "update tbuser set " + "username = ?, " + "password = ?, " + "email= ?, " + "birthdate = ?, "
+				+ "registerdate= ?, " + "image= ?, " + "role = ?, " + "enable= ? " + "where id = ?";
 		try (Connection cnn = dataSource.getConnection();) {
 			PreparedStatement ps = cnn.prepareStatement(sql);
 			ps.setString(1, usr.getUsername());
@@ -133,9 +129,35 @@ public class UserServiceImpl implements UserService{
 		return null;
 	}
 
+	@Override
+	public User show(String usrName) {
+		String sql = "select * from tbuser where username = ?";
+		try (Connection cnn = dataSource.getConnection();) {
+			PreparedStatement ps = cnn.prepareStatement(sql);
+			ps.setString(1, usrName);
+			ResultSet rs = ps.executeQuery();
+			System.out.println(ps.toString());
+			if (rs.next()) {
+				User s = new User();
+				s.setId(rs.getInt("id"));
+				s.setUsername(rs.getString("username"));
+				s.setPassword(rs.getString("password"));
+				s.setEmail(rs.getString("email"));
+				s.setBirthdate(rs.getDate("birthdate"));
+				s.setRegisterdate(rs.getDate("registerdate"));
+				s.setImage(rs.getString("image"));
+				s.setRole(rs.getString("role"));
+				s.setEnable(rs.getBoolean("enable"));
+				return s;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public ArrayList<User> search(String keyword, String type) {
-		String sql = "select * from tbuser where LOWER(" + type
-				+ ") like LOWER(?) ORDER BY " + type;
+		String sql = "select * from tbuser where LOWER(" + type + ") like LOWER(?) ORDER BY " + type;
 		try (Connection cnn = dataSource.getConnection();) {
 			PreparedStatement ps = cnn.prepareStatement(sql);
 			System.out.println(ps.toString());
@@ -161,5 +183,4 @@ public class UserServiceImpl implements UserService{
 		}
 		return null;
 	}
-
 }

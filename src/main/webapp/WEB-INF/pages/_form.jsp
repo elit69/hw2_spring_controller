@@ -34,7 +34,9 @@
 						href="${pageContext.request.contextPath}/logout"><i
 						class="fa fa-sign-out fa-2x"></i></a> <a class="btn pull-right"
 						href="${pageContext.request.contextPath}/"><i
-						class="fa fa-home fa-2x"></i></a>
+						class="fa fa-home fa-2x"></i></a> <a class="btn pull-right"
+						href="${pageContext.request.contextPath}/show/${currentUser.id }">Hi,
+						${currentUser.username }</a>
 				</h1>
 				<hr>
 				<mvc:form
@@ -128,7 +130,7 @@
 									<a
 										href="${pageContext.request.contextPath}/update/${usrObj.id}"
 										class="btn btn-primary" style="width: 200px;"> <i
-										class="fa fa-pencil"></i>&nbsp;&nbsp;Update
+										class="fa fa-pencil"></i>&nbsp;&nbsp;Edit
 									</a>
 									<a
 										href="${pageContext.request.contextPath}/delete/${usrObj.id}"

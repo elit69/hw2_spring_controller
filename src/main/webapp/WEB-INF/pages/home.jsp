@@ -26,6 +26,7 @@
 <!-- End Custom StyleSheet -->
 </head>
 <body>
+${message }
 	<div id="main" class="container-fluid">
 		<div class="col-sm-12 center-block">
 			<div class="col-sm-12 card form-horizontal">
@@ -36,6 +37,8 @@
 					<a class="btn pull-right"
 						href="${pageContext.request.contextPath}/add"><i
 						class="fa fa-plus fa-2x"></i></a>
+					<a class="btn pull-right"
+						href="${pageContext.request.contextPath}/show/${currentUser.id }">Hi, ${currentUser.username }</a>
 				</h1>
 				<hr>
 				<mvc:form action="${pageContext.request.contextPath}/search"
@@ -98,7 +101,7 @@
 											Show </a> <a class="label label-primary"
 										href="${pageContext.request.contextPath}/update/${usr.id}"
 										style="margin-right: 10px;"><i class="fa fa-pencil fa-lg"></i>
-											Update </a> <a class="label label-danger"
+											Edit </a> <a class="label label-danger"
 										href="${pageContext.request.contextPath}/delete/${usr.id}"
 										style="margin-right: 10px;"><i class="fa fa-trash-o fa-lg"></i>
 											Delete</a></td>

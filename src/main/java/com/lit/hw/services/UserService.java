@@ -10,5 +10,6 @@ public interface UserService {
 	public boolean update(User usr);
 	public boolean delete(int usrId);
 	public User show(int usrId);
+	public User show(String usrName);
 	public ArrayList<User> search(String keyword, String type);
 }
